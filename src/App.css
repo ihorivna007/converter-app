@@ -1,38 +1,120 @@
 .App {
-  text-align: center;
-}
+  --dark-blue: #154c79;
+  --ochre: #eab676;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  box-sizing: border-box;
+  margin: 50px auto;
+  padding: 25px;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  width: fit-content;
+  height: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+  border: 3px solid var(--dark-blue);
+  border-style: outset;
+  border-radius: 10px;
+  background-color: #eab67617;
+  color: var(--dark-blue);
+  font-size: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.field {
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 400px;
+  height: 37px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.field__data {
+  width: 180px;
+  height: 25px;
+  line-height: 25px;
+
+  border: 1px solid var(--dark-blue);
+  border-radius: 35px;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-size: 1rem;
+
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.toggle {
+  display: inline-flex;
+
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.toggle__display {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+
+  width: 200px;
+  height: 35px;
+  box-sizing: border-box;
+
+  border: 1px solid var(--dark-blue);
+
+  position: relative;
+  border-radius: 35px;
+  background-color: var(--ochre);
+
+  transition: .5s;
+  cursor: pointer;
+}
+
+.toggle__display::before {
+  content: '';
+  width: 50px;
+  height: 25px;
+  border-radius: 35px;
+
+  box-sizing: border-box;
+  border: 1px solid var(--dark-blue);
+
+  position: absolute;
+  z-index: 2;
+  left: 5px;
+
+  background-color: #fff;
+  transition: inherit;
+}
+
+.toggle__input:focus + .toggle__display {
+  outline: 1px auto var(--dark-blue); 
+}
+
+.toggle__input:focus:not(:focus-visible) + .toggle__display {
+  outline: 0;
+}
+
+.toggle__input:checked + .toggle__display {
+  background-color: var(--dark-blue);
+}
+
+.toggle__input:checked + .toggle__display::before {
+  -webkit-transform: translateX(140px);
+  -ms-transform: translateX(140px);
+  transform: translateX(140px);
+}
+
+.toggle__label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.toggle__label--sell {
+  color: var(--ochre);
+}
+
+.toggle__label--buy {
+  color: var(--dark-blue);
 }
